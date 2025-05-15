@@ -3,7 +3,7 @@ FROM php:8.2-fpm
 # ติดตั้ง dependency ที่จำเป็น
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libpq-dev libonig-dev libxml2-dev libzip-dev libldap2-dev \
-    && docker-php-ext-install pdo pdo_mysql mbstring zip ldap
+    && docker-php-ext-install pdo pdo_mysql mbstring zip ldap gd
 
 # ติดตั้ง Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
