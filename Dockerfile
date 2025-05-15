@@ -16,6 +16,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
+# ตั้งสิทธิ์ให้ storage และ bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 # ติดตั้ง Composer dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
