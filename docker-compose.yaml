@@ -7,11 +7,13 @@ services:
       dockerfile: Dockerfile
     container_name: sciserv-app
     ports:
-      - "81:80"   # แก้ตามต้องการ (เช่น 80:80 ถ้าใช้ Coolify ให้แค่ expose)
+      - "80:80"   # แก้ตามต้องการ (เช่น 80:80 ถ้าใช้ Coolify ให้แค่ expose)
     volumes:
       - .:/var/www/html
       - laravel_storage:/var/www/html/storage
       - laravel_cache:/var/www/html/bootstrap/cache
+    command: |
+      sh -c "chown -R www-data:www-data /var/www && php artisan config:cache && php-fpm"
     depends_on:
       - db
     environment:
@@ -27,7 +29,7 @@ services:
     container_name: sciserv-db
     restart: always
     ports:
-      - "3308:3306"  # แก้ตามต้องการ
+      - "3307:3306"  # แก้ตามต้องการ
     environment:
       MYSQL_DATABASE: tss
       MYSQL_ROOT_PASSWORD: fL15PK3FiuQSgke1yG7n3sUauzZOMHrUnPHH2oXWmR4XlS2boQOVwkp5FoETBtIN
