@@ -57,7 +57,7 @@ class LoginController extends Controller
             $ldapUser =  Adldap::search()->users()->where('userprincipalname', '=', $username."@psu.ac.th")->first();
             // $ldapUser = Adldap::search()->users()->find('athasit.ro');
             // $ldapUser = Adldap::search()->users()->find($username);
-            // dd($ldapUser);
+            dd($ldapUser);
 
             if ($ldapUser != null) {
                 // Get all attributes
