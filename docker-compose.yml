@@ -1,17 +1,42 @@
 version: '3.8'
 
 services:
-  web:
-    image: nginx:alpine
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./src:/var/www/html
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sciserv-app
     ports:
-      - "80:80"
-    depends_on:
-      - php
-
-  php:
-    image: php:8.2-fpm
+      - "80:80"   # แก้ตามต้องการ (เช่น 80:80 ถ้าใช้ Coolify ให้แค่ expose)
     volumes:
-      - ./src:/var/www/html
+      - .:/var/www/html
+      - laravel_storage:/var/www/html/storage
+      - laravel_cache:/var/www/html/bootstrap/cache
+    depends_on:
+      - db
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: rc0k0g8g0cksk88owosw4ks4
+      DB_PORT: 3306
+      DB_DATABASE: tss
+      DB_USERNAME: mysql
+      DB_PASSWORD: QtlULlE9X0bi1Mj1Btbd8T0BKsJR7PITAoAY0yZBpMk8wgcbZQTvhGPrZ9awRUAw
+
+  db:
+    image: mysql:8.0
+    container_name: sciserv-db
+    restart: always
+    ports:
+      - "3307:3306"  # แก้ตามต้องการ
+    environment:
+      MYSQL_DATABASE: tss
+      MYSQL_ROOT_PASSWORD: fL15PK3FiuQSgke1yG7n3sUauzZOMHrUnPHH2oXWmR4XlS2boQOVwkp5FoETBtIN
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: QtlULlE9X0bi1Mj1Btbd8T0BKsJR7PITAoAY0yZBpMk8wgcbZQTvhGPrZ9awRUAw
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+  laravel_storage:
+  laravel_cache:
