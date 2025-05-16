@@ -18,25 +18,50 @@ class DepartmentsController extends Controller
     public function index(Request $request)
     {
         abort_unless(Gate::allows('department_access'), 403);
-        if ($request->ajax()) {
+        // if ($request->ajax()) {
   
-            $data = Department::orderBy('id')->get();
+        //     $data = Department::orderBy('id')->get();
             
-            return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
+        //     return Datatables::of($data)
+        //             ->addIndexColumn()
+        //             ->addColumn('action', function($row){
    
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-xs btn-warning btn-sm editDepartment"><i class="fas fa-edit"></i></a>';
+        //                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-xs btn-warning btn-sm editDepartment"><i class="fas fa-edit"></i></a>';
    
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-xs btn-danger btn-sm deleteDepartment"><i class="fas fa-trash-alt"></i></a>';
+        //                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-xs btn-danger btn-sm deleteDepartment"><i class="fas fa-trash-alt"></i></a>';
     
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }
+        //                     return $btn;
+        //             })
+        //             ->rawColumns(['action'])
+        //             ->make(true);
+        // }
         
-        return view('admin.departments.index');
+        // return view('admin.departments.index');
+
+            if ($request->ajax()) {
+                $data = Department::all();
+                $result = [];
+                $index = 1;
+
+                foreach ($data as $row) {
+                    $result[] = [
+                        'index' => $index++,
+                        'name' => $row->name, // เปลี่ยนตาม column ที่คุณมี
+                        'action' => '
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-xs btn-warning btn-sm editDepartment">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-xs btn-danger btn-sm deleteDepartment">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>'
+                    ];
+                }
+
+                return response()->json(['data' => $result]);
+            }
+
+            // ถ้าไม่ใช่ AJAX request ให้แสดงหน้า view ปกติ
+            return view('admin.departments.index');
     }
        
     /**
