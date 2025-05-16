@@ -45,7 +45,7 @@ class DepartmentsController extends Controller
 
                 foreach ($data as $row) {
                     $result[] = [
-                        'index' => $index++,
+                        'id' => $row->id,
                         'department_name' => $row->department_name,
                         'group_name' => $row->group_name,
                         'status' => $row->status,
