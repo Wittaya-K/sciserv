@@ -120,11 +120,11 @@ class ScheduleController extends Controller
 			}
 
 			// เช็คว่า username มีงานที่รับผิดชอบตรงกับหลักสูตรหรือไม่
-			if($arr_username[0] == $usernameDepartment[0]){
+			// if($arr_username[0] == $usernameDepartment[0]){
 				// dd($arr_username,$usernameDepartment);
-			} else {
+			// } else {
 				// dd($arr_username,$usernameDepartment);
-			}
+			// }
 
 			$arr_mails = [];
 			foreach ($arr_username as $arr_username_item) {
