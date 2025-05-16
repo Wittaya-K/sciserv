@@ -29,7 +29,7 @@ services:
     container_name: sciserv-db
     restart: always
     ports:
-      - "3307:3306"  # แก้ตามต้องการ
+      - "3308:3306"  # แก้ตามต้องการ
     environment:
       MYSQL_DATABASE: tss
       MYSQL_ROOT_PASSWORD: 0zooLSIYSF5rfdyV6Sb1MGbLMXmorkqpH48LNiGWmDi496pLLW232FcWsw1alPb8
