@@ -49,7 +49,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        try {
+        // try {
             $username = $request->input('username'); //ชื่อผู้ใช้
             $password = $request->input('password'); //รหัสผ่าน
             // $username = 'tanonchai.r';
@@ -145,9 +145,9 @@ class LoginController extends Controller
                     } // end foreach
                 }
             }
-        } catch (Throwable $th) {
-            return redirect()->to('/login')->with('error', 'ไม่มีสิทธิ์เข้าใช้งาน');
-        }
+        // } catch (Throwable $th) {
+        //     return redirect()->to('/login')->with('error', 'ไม่มีสิทธิ์เข้าใช้งาน');
+        // }
     }
 
     public function redirectToPSU()
