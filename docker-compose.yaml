@@ -10,11 +10,8 @@ services:
       - "81:80"   # แก้ตามต้องการ (เช่น 80:80 ถ้าใช้ Coolify ให้แค่ expose)
     volumes:
       - .:/var/www/html
-      # - .:/var/www/html/public
       - laravel_storage:/var/www/html/storage
       - laravel_cache:/var/www/html/bootstrap/cache
-    #command: |
-      #sh -c "chown -R www-data:www-data /var/www && php artisan config:cache && php-fpm"
     command: >
       sh -c "chown -R www-data:www-data /var/www && php artisan config:cache && apache2-foreground"
 
@@ -27,19 +24,19 @@ services:
       DB_PORT: 3306
       DB_DATABASE: tss
       DB_USERNAME: mysql
-      DB_PASSWORD: RpDoiR9gLeD2OaaFmvtNtRvkeAEHs4Pr7KQohtJFxhvTjCeH0pOmoE1HLVSL3TPe
+      DB_PASSWORD: 7CI0ZJVNPU6hyiVP6X13iclUaQVwjIJhxetqivEtZienF7xVtNQ6ycIBWQX1Jqei
 
   db:
-    image: mysql:8.0
+    image: mysql:8
     container_name: sciserv-db
     restart: always
     ports:
       - "3308:3306"  # แก้ตามต้องการ
     environment:
       MYSQL_DATABASE: tss
-      MYSQL_ROOT_PASSWORD: VpnNXv6jhFjguLJVfn91MfQPpuXq2sdFbz2OeI1aSCjZ85isNQL7YA2oHgCMUzGP
+      MYSQL_ROOT_PASSWORD: Ly1Re7rVjlHKrJQjaUWHlWVE4bhadcO2mdmBi1uxL7YgDW1T40R8jH4vOgTQxVwr
       MYSQL_USER: mysql
-      MYSQL_PASSWORD: RpDoiR9gLeD2OaaFmvtNtRvkeAEHs4Pr7KQohtJFxhvTjCeH0pOmoE1HLVSL3TPe
+      MYSQL_PASSWORD: 7CI0ZJVNPU6hyiVP6X13iclUaQVwjIJhxetqivEtZienF7xVtNQ6ycIBWQX1Jqei
     volumes:
       - mysql_data:/var/lib/mysql
 
