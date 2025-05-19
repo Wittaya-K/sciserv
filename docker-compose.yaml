@@ -9,8 +9,8 @@ services:
     ports:
       - "81:80"   # แก้ตามต้องการ (เช่น 80:80 ถ้าใช้ Coolify ให้แค่ expose)
     volumes:
-      #- .:/var/www/html
-      - .:/var/www/html/public
+      - .:/var/www/html
+      # - .:/var/www/html/public
       - laravel_storage:/var/www/html/storage
       - laravel_cache:/var/www/html/bootstrap/cache
     #command: |
