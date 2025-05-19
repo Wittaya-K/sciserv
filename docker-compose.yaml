@@ -23,11 +23,11 @@ services:
       - db
     environment:
       DB_CONNECTION: mysql
-      DB_HOST: n8c8wg880oww4scs4kggsgwk
+      DB_HOST: sckw00okc0kcs8soo4c4484s
       DB_PORT: 3306
       DB_DATABASE: tss
       DB_USERNAME: mysql
-      DB_PASSWORD: 7PuQw5tKSgc8dYvBypIgH3P1690HQjckShRNtkFQMyPhdKzKzaYPbnXDpmr3wXvT
+      DB_PASSWORD: RpDoiR9gLeD2OaaFmvtNtRvkeAEHs4Pr7KQohtJFxhvTjCeH0pOmoE1HLVSL3TPe
 
   db:
     image: mysql:8.0
@@ -37,9 +37,9 @@ services:
       - "3308:3306"  # แก้ตามต้องการ
     environment:
       MYSQL_DATABASE: tss
-      MYSQL_ROOT_PASSWORD: 0zooLSIYSF5rfdyV6Sb1MGbLMXmorkqpH48LNiGWmDi496pLLW232FcWsw1alPb8
+      MYSQL_ROOT_PASSWORD: VpnNXv6jhFjguLJVfn91MfQPpuXq2sdFbz2OeI1aSCjZ85isNQL7YA2oHgCMUzGP
       MYSQL_USER: mysql
-      MYSQL_PASSWORD: 7PuQw5tKSgc8dYvBypIgH3P1690HQjckShRNtkFQMyPhdKzKzaYPbnXDpmr3wXvT
+      MYSQL_PASSWORD: RpDoiR9gLeD2OaaFmvtNtRvkeAEHs4Pr7KQohtJFxhvTjCeH0pOmoE1HLVSL3TPe
     volumes:
       - mysql_data:/var/lib/mysql
 
